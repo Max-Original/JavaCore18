@@ -1,17 +1,16 @@
 package javacore18;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
-public class Map<K extends MyEntry> {
+public class Map<K, V> {
 
-	private List<MyEntry> map = new ArrayList();
+	private Set<MyEntry> map = new HashSet();
 
-	public Map(List<MyEntry> map) {
+	public Map() {
 		super();
-		this.map = map;
 	}
 
 	public void show() {
@@ -30,61 +29,51 @@ public class Map<K extends MyEntry> {
 		}
 	}
 
-	public <V> void removeByValue() {
-		System.out.println("enter value");
-		Scanner scanner = new Scanner(System.in);
-		V verable = (V) scanner.next();
+	public <K> void removeByKey(K key) {
+		for (MyEntry entry : map) {
+			if (entry.key1.equals(key)) {
+				map.remove(entry);
+			}
+		}
+	}
+
+	public <V> void removeByValue(V value) {
 		for (Iterator<MyEntry> iterator = map.iterator(); iterator.hasNext();) {
-			MyEntry value = iterator.next();
-			if (value.getObj2().equals(verable)) {
+			MyEntry valueFromIterator = iterator.next();
+			if (valueFromIterator.getObj2().equals(value)) {
 				iterator.remove();
 			}
 		}
 	}
 
-	public <K> void removeByKey() {
-		System.out.println("enter value");
-		Scanner scanner = new Scanner(System.in);
-		K keyValue = (K) scanner.next();
-		for (Iterator<MyEntry> iterator = map.iterator(); iterator.hasNext();) {
-			MyEntry value = iterator.next();
-			if (value.getObj1().equals(keyValue)) {
-				iterator.remove();
-			}
-		}
-	}
-
-	public <K, V> void Add() {
-		System.out.println("Enter your key");
-		Scanner scanner = new Scanner(System.in);
-		K keyValue = (K) scanner.next();
-		System.out.println("Enter your Value");
-		V value = (V) scanner.next();
+	public <K, V> void Add(K keyValue, V value) {
 		map.add(new MyEntry(keyValue, value));
-		
 	}
 }
 
-class MyEntry<K,V> {
-	
+class MyEntry<K, V> {
+
 	K key1;
 	V verable2;
-	
+
 	public MyEntry(K obj1, V obj2) {
 		super();
 		this.key1 = obj1;
 		this.verable2 = obj2;
 	}
-	
+
 	public K getObj1() {
 		return key1;
 	}
+
 	public void setObj1(K obj1) {
 		this.key1 = obj1;
 	}
+
 	public V getObj2() {
 		return verable2;
 	}
+
 	public void setObj2(V obj2) {
 		this.verable2 = obj2;
 	}
@@ -93,5 +82,5 @@ class MyEntry<K,V> {
 	public String toString() {
 		return "MyEntry [obj1=" + key1 + ", obj2=" + verable2 + "]";
 	}
-	
+
 }

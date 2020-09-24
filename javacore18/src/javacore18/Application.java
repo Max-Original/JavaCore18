@@ -1,7 +1,10 @@
 package javacore18;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Application {
 public static void main(String[] args) {
@@ -22,21 +25,20 @@ public static void main(String[] args) {
 		}
 	}
 	System.out.println(intList);
+	System.out.println(strList);
 	
-	List<MyEntry> myEntry = new ArrayList<MyEntry>();
-	myEntry.add(new MyEntry("Max", "Hello"));
-	myEntry.add(new MyEntry("s", "m"));
-	
-	Map<MyEntry> map = new Map(myEntry);
+	Map<Integer, String> map = new Map<>();
 
 	//it all works )
-	
-	map.show();
+
+	map.Add(1,"Max");
+	map.Add(2,"Nazar");
+	map.Add(3,"Dimon");
 	map.showKeys();
 	map.ShowValue();
-	map.removeByValue();
-	map.removeByKey();
-	map.Add();
+	map.show();
+	map.removeByKey(2);
+	map.removeByValue("Dimon");
 	map.show();
 }
 }
